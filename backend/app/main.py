@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import users, proposals, explorer
+from .routers import users, proposals, explorer, votes
 
 # 1. 创建 FastAPI 实例
 app = FastAPI(
@@ -25,6 +25,7 @@ app.add_middleware(
 # 这里把我们写好的接口挂载到 API 上
 app.include_router(users.router, prefix="/api/v1/users", tags=["用户模块"])
 app.include_router(proposals.router, prefix="/api/v1/proposals", tags=["提案模块"])
+app.include_router(votes.router, prefix="/api/v1/votes", tags=["投票模块"])
 app.include_router(explorer.router, prefix="/api/v1/explorer", tags=["区块链浏览器模拟"])
 
 # 4. 根路径测试
